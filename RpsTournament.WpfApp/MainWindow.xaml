@@ -1,0 +1,92 @@
+﻿<Window x:Class="RpsTournament.WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RpsTournament.WpfApp"
+        mc:Ignorable="d"
+        Title="RPS Tournament"
+        Height="450"
+        Width="800">
+
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Mängija nimi:"
+                   Margin="0,0,0,5"/>
+
+        <TextBox x:Name="PlayerNameTextBox"
+                 Grid.Row="1"
+                 Margin="0,0,0,10"
+                 TextChanged="PlayerNameTextBox_TextChanged"/>
+
+        <ComboBox x:Name="PlayerMoveComboBox"
+                  Grid.Row="2"
+                  Margin="0,0,0,10"
+                  SelectionChanged="PlayerMoveComboBox_SelectionChanged">
+            <ComboBoxItem Content="Kivi"/>
+            <ComboBoxItem Content="Paber"/>
+            <ComboBoxItem Content="Käärid"/>
+        </ComboBox>
+
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10">
+
+            <Button x:Name="PlayRoundButton"
+                    Content="Mängi voor"
+                    Width="120"
+                    Margin="0,0,10,0"
+                    Click="PlayRoundButton_Click"/>
+
+            <Button x:Name="NewTournamentButton"
+                    Content="Uus turniir"
+                    Width="120"
+                    Click="NewTournamentButton_Click"/>
+
+        </StackPanel>
+
+        <TextBlock x:Name="ScoreTextBlock"
+                   Grid.Row="4"
+                   Margin="0,0,0,5"
+                   FontWeight="Bold"/>
+
+        <TextBlock x:Name="StatusTextBlock"
+                   Grid.Row="4"
+                   Margin="0,20,0,0"
+                   Foreground="Red"/>
+
+        <DataGrid x:Name="RoundsDataGrid"
+          Grid.Row="5"
+          AutoGenerateColumns="False"
+          Margin="0,10,0,0">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Voor"
+                            Binding="{Binding Number}" />
+
+                <DataGridTextColumn Header="Mängija käik"
+                            Binding="{Binding PlayerMove}" />
+
+                <DataGridTextColumn Header="Arvuti käik"
+                            Binding="{Binding ComputerMove}" />
+
+                <DataGridTextColumn Header="Tulemus"
+                            Binding="{Binding Result}" />
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+</Window>   
