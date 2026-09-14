@@ -1,44 +1,40 @@
-﻿using RpsTournament.Core;
+﻿using RpsTournament.WpfApp;
+using RpsTournament.Core;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RpsTournament.WpfApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private List<GameRound> rounds = new();
+
         private int roundNumber = 1;
         private int wins;
         private int losses;
         private int draws;
+
         public MainWindow()
         {
             InitializeComponent();
+
             RoundsDataGrid.ItemsSource = rounds;
+
             UpdateScore();
         }
 
         private void UpdateScore()
         {
-            ScoreTextBlock.Text = $"Võidud: {wins} | Kaotused: {losses} | Viigid: {draws}";
+            ScoreTextBlock.Text =
+                $"Võidud: {wins} | Kaotused: {losses} | Viigid: {draws}";
         }
 
         private void ClearErrorIfValid()
         {
-            if (PlayerNameTextBox.Text.Length >= 2 && PlayerMoveComboBox.SelectedItem != null)
+            if (PlayerNameTextBox.Text.Length >= 2 &&
+                PlayerMoveComboBox.SelectedItem != null)
             {
                 StatusTextBlock.Text = "";
             }
@@ -58,19 +54,23 @@ namespace RpsTournament.WpfApp
         {
             StatusTextBlock.Text = "";
 
-            if (PlayerNameTextBox.Text.Length < 2 || PlayerNameTextBox.Text.Length > 30)
+            if (PlayerNameTextBox.Text.Length < 2 ||
+                PlayerNameTextBox.Text.Length > 30)
             {
-                StatusTextBlock.Text = "Mängija nimi peab olema 2-30 märki!";
+                StatusTextBlock.Text = RpsTournament.WpfApp.Resources.InvalidName;
                 return;
             }
 
             if (PlayerMoveComboBox.SelectedItem == null)
             {
-                StatusTextBlock.Text = "Palun vali käik!";
+                StatusTextBlock.Text = RpsTournament.WpfApp.Resources.NoMoveSelected;
                 return;
             }
 
-        string moveText = ((ComboBoxItem)PlayerMoveComboBox.SelectedItem).Content.ToString();
+            string moveText =
+                ((ComboBoxItem)PlayerMoveComboBox.SelectedItem!)
+                .Content
+                .ToString()!;
 
             Move playerMove = Enum.Parse<Move>(moveText);
 
@@ -131,7 +131,9 @@ namespace RpsTournament.WpfApp
             RoundsDataGrid.ItemsSource = null;
             RoundsDataGrid.ItemsSource = rounds;
 
-            StatusTextBlock.Text = "Uus turniir alustatud!";
+            PlayerMoveComboBox.SelectedItem = null;
+
+            StatusTextBlock.Text = RpsTournament.WpfApp.Resources.NewTournamentStarted;
 
             PlayRoundButton.IsEnabled = true;
         }

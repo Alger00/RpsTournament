@@ -70,6 +70,15 @@ namespace RpsTournament.WpfApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uus turniir alustatud!.
+        /// </summary>
+        internal static string NewTournamentStarted {
+            get {
+                return ResourceManager.GetString("NewTournamentStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Palun vali käik.
         /// </summary>
         internal static string NoMoveSelected {

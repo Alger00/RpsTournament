@@ -120,6 +120,9 @@
   <data name="InvalidName" xml:space="preserve">
     <value>Mängija nimi peab olema 2-30 märki</value>
   </data>
+  <data name="NewTournamentStarted" xml:space="preserve">
+    <value>Uus turniir alustatud!</value>
+  </data>
   <data name="NoMoveSelected" xml:space="preserve">
     <value>Palun vali käik</value>
   </data>
